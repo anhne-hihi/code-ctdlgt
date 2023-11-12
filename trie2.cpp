@@ -29,6 +29,7 @@ public:
                 now->child[x - 'a'] = new node();
             }
             now = now->child[x - 'a'];
+            now->d++;
         }
         now->endd = true;
     }
