@@ -10,8 +10,7 @@ public:
         for (int i = 0; i < 26; i++) {
             child[i] = nullptr;
         }
-        // phai gan all con tro child thanh null het thì ve sau 
-        // no moi bt dau la null dau la co rui 
+    
     }
 };
 class trie{
@@ -73,43 +72,32 @@ public:
       
         return true;
     }
-	void xoa(node* now, const string& word, int index) {
-    if (index == word.length() - 1) {
-        if (now->child[word[index] - 'a'] != nullptr) {
-            node* child = now->child[word[index] - 'a'];
-            now->child[word[index] - 'a'] = nullptr;
-            delete child;
+   bool xoa(node *now, const string &word, int index) {
+        if (index < word.length()) {
+            int tmp = word[index] - 'a';
+            bool nodeCanPhaiXoa = xoa(now->child[tmp], word, index + 1);
+            if (nodeCanPhaiXoa)
+                now->child[tmp] = nullptr;
+        } else {
+            now->endd = false;
         }
-        return;
+        if (now != root) {
+            now->d--;
+            if (now->d == 0) {
+                delete now;
+                return true;
+            }
+        }
+        return false;
     }
 
-    if (now->child[word[index] - 'a'] != nullptr) {
-        xoa(now->child[word[index] - 'a'], word, index + 1);
-    }
-
-    // Ki?m tra xem node hi?n t?i có n?m trên du?ng di t?i node lá khác không
-    bool hasChild = false;
-    for (int i = 0; i < 26; i++) {
-        if (now->child[i] != nullptr) {
-            hasChild = true;
-            break;
+    void xoatu(const string word) {
+        if (!search(word)) cout << "tu do khong co trong cay!\n";
+        else {
+            xoa(root, word, 0);
+            cout << "da xoa thanh cong!\n";
         }
     }
-
-    // N?u node hi?n t?i không có con và không ph?i node lá thì xóa node dó
-    if (!hasChild) {
-        delete now;
-        now = nullptr;
-    }
-}
-
-void xoatu(const string word) {
-	if(!search(word)) cout<<"tu do khong co trong cay!\n";
-    else {
-    	xoa(root, word, 0);
-    	cout<<"da xoa thanh cong!\n";	
-	}
-}
 };
 int main() {
     trie tt;

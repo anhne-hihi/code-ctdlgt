@@ -88,7 +88,7 @@ int main(){
 	cin >>s;
 	int k=s.size();
 	if(tt.prefix(s)) {
-		cout<<"xau nay la tien to cua xau nay la :";
+		cout<<"xau nay la tien to cua xau :";
 		tt.inprefix(tt.root,s,k);
 		
 	}

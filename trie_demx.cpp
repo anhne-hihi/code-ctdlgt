@@ -10,8 +10,7 @@ public:
         for (int i = 0; i < 26; i++) {
             child[i] = nullptr;
         }
-        // phai gan all con tro child thanh null het thì ve sau 
-        // no moi bt dau la null dau la co rui 
+    
     }
 };
 class trie{
@@ -33,8 +32,7 @@ public:
         }
         now->endd = true;
     }
-    
-    int  prefix(string word) {
+      int  prefix(string word) {
         node* now = root;
 
         for (char x : word) {
@@ -50,14 +48,14 @@ public:
 };
 int main(){
 	trie tt;
-	int n;cin>>n;cin.ignore();
+	string s;int n;
+	cout<<"nhap so luong xau: ";cin>>n;
 	for(int i=0;i<n;i++){
-		string s1,s2;
-		cin>>s1>>s2;
-		if(s1=="add"){
-			tt.them(s2);
-		}
-		else cout<<tt.prefix(s2)<<endl;	
+		cout<<"nhap xau thu "<<i+1<<" : ";
+		cin>>s;
+		tt.them(s);
 	}
+	cout<<"\nnhap xau muon kiem tra :";
+	cin >>s;
+	cout<<"xau nay la tien to cua: "<<tt.prefix(s)<<" xau!";
 }
-

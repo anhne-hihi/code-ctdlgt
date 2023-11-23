@@ -31,7 +31,7 @@ class trie{
 		now->endd=true;
 	}
 	//
-	int  prefix(string sdt){
+	int prefix(string sdt){
 		node *now=root;
 		for(char x: sdt){
 			if(now->child[x-'0']==nullptr){
